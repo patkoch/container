@@ -1,0 +1,21 @@
+apiVersion: apps/v1
+kind: StatefulSet
+metadata:
+  name: linux-statefulset
+spec:
+  selector:
+    matchLabels:
+      app: linux-statefulset
+  serviceName: "linux-statefulset"
+  replicas: 2
+  template:
+    metadata:
+      labels:
+        app: linux-statefulset
+    spec:
+      containers:
+      - name: linux-statefulset
+        image:  msdevgrazregistry.azurecr.io/linux:statefulset
+      nodeSelector: 
+        kubernetes.io/os: linux
+      restartPolicy: Always
